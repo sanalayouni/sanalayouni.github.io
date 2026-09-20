@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synara — Sana Layouni</title>
+<meta name="description" content="Synara: a dashboard for an AI email router that sorts incoming emails to the right department, designed and built by Sana Layouni.">
+<meta property="og:title" content="Synara — Sana Layouni">
+<meta property="og:image" content="assets/dashboard.webp">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+(function(){var t=null;try{t=localStorage.getItem("theme")}catch(e){}
+if(t!=="dark"&&t!=="light")t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+document.documentElement.setAttribute("data-theme",t)})();
+</script>
+<style>
+:root{
+  --ease:cubic-bezier(.16,1,.3,1); --smooth:cubic-bezier(.22,.68,0,1);
+  --pad:clamp(20px,5vw,72px);
+  --serif:Newsreader,Georgia,serif;
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+}
+html[data-theme="light"]{
+  --bg:#FFFFFF; --panel:#FAFAFA; --ink:#17171A; --muted:#6E6E78;
+  --line:#E6E6EA; --btn:#2E2E35; --btn-ink:#FFFFFF;
+  --sh:0 1px 2px rgba(20,20,30,.04),0 14px 36px rgba(20,20,30,.06);
+  --sh-lift:0 2px 6px rgba(20,20,30,.05),0 26px 60px rgba(20,20,30,.10);
+}
+html[data-theme="dark"]{
+  --bg:#0D0D10; --panel:#141418; --ink:#F3F3F6; --muted:#9A9AA6;
+  --line:#24242B; --btn:#E9E9EE; --btn-ink:#141418;
+  --sh:0 1px 2px rgba(0,0,0,.4),0 14px 36px rgba(0,0,0,.34);
+  --sh-lift:0 2px 6px rgba(0,0,0,.45),0 26px 60px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.65;overflow-x:hidden;
+  transition:background-color .7s var(--ease),color .7s var(--ease);
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:1.5px solid var(--ink);outline-offset:4px;border-radius:4px}
+::selection{background:var(--ink);color:var(--bg)}
+h1,h2,h3{font-weight:600;letter-spacing:-.035em;line-height:1.04}
+.ser{font-family:var(--serif);font-weight:300;letter-spacing:0;font-style:italic}
+
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.mark{font-family:var(--serif);font-style:italic;font-size:22px}
+.top-r{display:flex;align-items:center;gap:22px;font-size:14.5px;font-weight:500;color:var(--muted)}
+.top-r a:hover{color:var(--ink)}
+.theme{background:none;border:0;color:var(--muted);cursor:pointer;display:grid;place-items:center;padding:4px}
+.theme:hover{color:var(--ink)}
+.theme svg{width:18px;height:18px}
+
+.hero{padding:clamp(40px,8vh,90px) 0 clamp(60px,10vh,110px);position:relative}
+.idx{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--muted);margin-bottom:14px}
+.hero h1{font-size:clamp(3rem,9vw,7rem);letter-spacing:-.04em;margin-bottom:26px;position:relative}
+.hero .kanji{
+  font-family:var(--serif);color:var(--muted);font-size:clamp(1rem,2vw,1.35rem);
+  writing-mode:vertical-rl;position:absolute;right:0;top:clamp(40px,8vh,90px);letter-spacing:.35em;
+}
+.lede{max-width:52ch;font-size:clamp(18px,1.7vw,22px);color:var(--muted);line-height:1.6;margin-bottom:34px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.tag{font-size:13px;font-weight:500;padding:5px 14px;border-radius:100px;color:var(--muted);border:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:11px;margin-bottom:clamp(44px,7vh,80px)}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-family:inherit;font-weight:500;
+  font-size:14.5px;padding:14px 28px;border-radius:100px;cursor:pointer;
+  border:1px solid var(--btn);background:var(--btn);color:var(--btn-ink);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+}
+.btn:hover{transform:translateY(-3px);box-shadow:var(--sh-lift)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn svg{width:17px;height:17px}
+
+.film{
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);
+  box-shadow:var(--sh);
+  clip-path:inset(0 0 100% 0);animation:wipe 1.3s .2s var(--smooth) forwards;
+}
+@keyframes wipe{to{clip-path:inset(-80px)}}
+.bar{display:flex;align-items:center;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.bar i{width:8px;height:8px;border-radius:50%;background:var(--line);display:block}
+.bar span{margin-left:10px;font-size:11px;color:var(--muted)}
+.film video{width:100%;aspect-ratio:1280/680;background:#000}
+.film img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.film-caption{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--muted);margin-top:14px}
+
+section{padding:clamp(64px,11vh,130px) 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.9rem,4.4vw,3.2rem);margin-bottom:28px}
+.two{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(24px,5vw,90px)}
+.intro p{margin:0 0 20px;max-width:58ch;color:var(--muted);line-height:1.75}
+.intro strong{color:var(--ink);font-weight:600}
+
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:34px 26px}
+.shot{margin:0}
+.shot button{
+  all:unset;cursor:zoom-in;display:block;border-radius:14px;overflow:hidden;
+  border:1px solid var(--line);background:var(--panel);box-shadow:var(--sh);
+  transition:transform 1s var(--smooth),box-shadow 1s var(--smooth);
+}
+.shot button:focus-visible{outline:1.5px solid var(--ink);outline-offset:4px}
+.shot button:hover{transform:translateY(-8px);box-shadow:var(--sh-lift)}
+.shot img{width:100%;aspect-ratio:16/8;object-fit:cover;object-position:top}
+.shot figcaption{font-size:15px;color:var(--muted);padding-top:12px}
+.shot figcaption b{color:var(--ink);font-weight:600}
+
+.features{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:26px 60px}
+.features li{border-top:1px solid var(--line);padding-top:16px}
+.features b{display:block;font-weight:600;margin-bottom:4px}
+.features span{color:var(--muted);font-size:15.5px}
+
+.layers{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 30px}
+.layers li{font-size:14px;font-weight:500;padding:8px 18px;border:1px solid var(--line);border-radius:100px}
+.layers .arrow{border:0;padding:0 2px;color:var(--muted);font-family:var(--serif)}
+.stack p.note{color:var(--muted);margin-bottom:18px}
+.stack dl{display:grid;grid-template-columns:max-content 1fr;gap:12px 28px}
+.stack dt{font-weight:600}
+.stack dd{color:var(--muted)}
+
+.next{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:24px}
+.next h2{margin-bottom:12px}
+.next p{color:var(--muted);max-width:44ch}
+
+footer{text-align:center;padding:34px var(--pad) 46px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line)}
+
+dialog{border:0;padding:0;background:transparent;max-width:min(1400px,94vw);color:#F3F3F6;margin:auto}
+dialog::backdrop{background:rgba(13,13,16,.92)}
+dialog img{border-radius:12px;max-height:82vh;width:auto;margin:0 auto}
+dialog .lb-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 4px 0;gap:12px}
+dialog .lb-bar span{font-family:var(--serif);font-style:italic;font-size:18px}
+dialog button{
+  background:none;border:1px solid #3a3a44;color:#F3F3F6;border-radius:100px;
+  padding:7px 16px;font:inherit;font-size:14px;cursor:pointer;
+}
+dialog button:hover{border-color:#F3F3F6}
+dialog .nav{display:flex;gap:8px}
+
+@media (max-width:820px){
+  .two{grid-template-columns:1fr;gap:6px}
+  .features{grid-template-columns:1fr}
+  .hero .kanji{display:none}
+  .top-r .gh{display:none}
+}
+@media (max-width:560px){ .gallery{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .film{clip-path:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Site">
+    <a class="mark" href="../index.html">Sana Layouni</a>
+    <div class="top-r">
+      <a href="../index.html#work">All projects</a>
+      <a class="gh" href="https://github.com/sanalayouni" target="_blank" rel="noopener">GitHub</a>
+      <button class="theme" id="theme" type="button" aria-label="Switch theme">
+        <svg id="ic-theme" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"></svg>
+      </button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <p class="idx">Project three</p>
+    <h1>Syn<span class="ser">ara</span></h1>
+    <p class="lede">An NLP system that reads every incoming email, works out what it is about and routes it to the right department, with a confidence score on each prediction and a person in the loop for the uncertain ones.</p>
+    <div class="tags"><span class="tag">NLP</span><span class="tag">Text classification</span><span class="tag">Confidence scoring</span><span class="tag">React 19</span><span class="tag">Tailwind CSS</span><span class="tag">Recharts</span></div>
+    <div class="actions">
+      <a class="btn" href="https://github.com/sanalayouni/Synara" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        View code on GitHub
+      </a>
+      <a class="btn ghost" href="#screens">See the screens</a>
+    </div>
+    <div class="film"><img src="assets/dashboard.webp" alt="Synara dashboard with emails today, routing accuracy, department distribution and weekly volume"></div>
+    <p class="film-caption">The overview dashboard. Screens show sample data.</p>
+  </header>
+
+  <section class="two intro" aria-labelledby="about">
+    <h2 id="about">What it is</h2>
+    <div>
+      <p>Support inboxes mix IT problems, invoices, leave requests, angry customers and contracts. Sorting them by hand is slow, and keyword rules break as soon as someone words a request differently. Synara reads the <strong>language</strong> instead: a text classifier takes the subject and body of each email, works out what the person is asking for, and sends it to IT Support, Finance, HR, Support or Legal.</p>
+      <p>Because the model can be wrong, it also says how sure it is. Predictions above a <strong>confidence threshold</strong> are routed automatically, the rest wait in a review queue, and every correction a person makes is logged as new training data. That feedback loop is what makes accuracy climb over time instead of standing still.</p>
+    </div>
+  </section>
+
+  <section class="two stack" aria-labelledby="flow-h">
+    <h2 id="flow-h">How an email is routed</h2>
+    <div>
+      <ol class="layers">
+        <li>New email</li><li class="arrow" aria-hidden="true">›</li>
+        <li>Read the text</li><li class="arrow" aria-hidden="true">›</li>
+        <li>Classify the intent</li><li class="arrow" aria-hidden="true">›</li>
+        <li>Score the confidence</li><li class="arrow" aria-hidden="true">›</li>
+        <li>Route or review</li>
+      </ol>
+      <p class="note">Corrections from the review queue go back into training, so the classifier keeps getting better at the wording this particular inbox receives.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="features-h">
+    <h2 id="features-h">Features</h2>
+    <ul class="features">
+      <li><b>Overview</b><span>Emails today, routing accuracy, emails waiting for review and average confidence, with the week's volume.</span></li>
+      <li><b>Review queue</b><span>Each email with the predicted department and the model's confidence; approve it or reroute it in one click. A reroute is a labelled example for the next round of training.</span></li>
+      <li><b>Departments</b><span>Volume and routing accuracy for each team.</span></li>
+      <li><b>Analytics</b><span>Total processed, share routed automatically, corrections by department and the accuracy trend.</span></li>
+      <li><b>Model settings</b><span>Connect the inbox, pick the classification model, set the confidence threshold that decides auto-routing, and turn the feedback loop on.</span></li>
+    </ul>
+  </section>
+
+  <section class="two stack" aria-labelledby="stack-h">
+    <h2 id="stack-h">How it's built</h2>
+    <div>
+      <dl>
+        <dt>Language model</dt><dd>A fine-tuned transformer classifier over the email text</dd>
+        <dt>Interface</dt><dd>React 19 with Vite</dd>
+        <dt>Styling</dt><dd>Tailwind CSS, Tabler icons</dd>
+        <dt>Charts</dt><dd>Recharts</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section id="screens" aria-labelledby="screens-h">
+    <h2 id="screens-h">Screens</h2>
+    <div class="gallery">
+      <figure class="shot"><button type="button" aria-label="Enlarge: Incoming emails"><img src="assets/emails.webp" alt="Queue of incoming emails with department, confidence and status" loading="lazy"></button><figcaption><b>Incoming emails.</b> Every email with its department and confidence, ready to approve or reroute.</figcaption></figure>
+      <figure class="shot"><button type="button" aria-label="Enlarge: Departments"><img src="assets/departments.webp" alt="Department cards with volume and routing accuracy" loading="lazy"></button><figcaption><b>Departments.</b> Volume and routing accuracy for each team.</figcaption></figure>
+      <figure class="shot"><button type="button" aria-label="Enlarge: Analytics"><img src="assets/analytics.webp" alt="Analytics with corrections by department and accuracy trend" loading="lazy"></button><figcaption><b>Analytics.</b> Corrections by department and how accuracy improves.</figcaption></figure>
+      <figure class="shot"><button type="button" aria-label="Enlarge: Settings"><img src="assets/settings.webp" alt="Settings for the inbox connection and the model" loading="lazy"></button><figcaption><b>Settings.</b> Inbox connection and model settings.</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="next-h">
+    <div>
+      <h2 id="next-h">What's next</h2>
+      <p>Connecting the dashboard to a live inbox, and training the classifier on real routing data so the feedback loop runs end to end.</p>
+    </div>
+    <a class="btn" href="https://github.com/sanalayouni/Synara" target="_blank" rel="noopener">See the code</a>
+  </section>
+</div>
+
+<footer>© Sana Layouni</footer>
+
+<dialog id="lightbox" aria-label="Screenshot viewer">
+  <img id="lb-img" alt="">
+  <div class="lb-bar">
+    <span id="lb-cap"></span>
+    <div class="nav">
+      <button type="button" id="lb-prev" aria-label="Previous screenshot">‹</button>
+      <button type="button" id="lb-next" aria-label="Next screenshot">›</button>
+      <button type="button" id="lb-close">Close</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var root=document.documentElement, ic=document.getElementById("ic-theme");
+  function paint(){
+    ic.innerHTML = root.getAttribute("data-theme")==="dark"
+      ? '<circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M5 5l1.4 1.4M17.6 17.6 19 19M2.5 12h2M19.5 12h2M5 19l1.4-1.4M17.6 6.4 19 5"/>'
+      : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  }
+  paint();
+  document.getElementById("theme").addEventListener("click",function(){
+    root.setAttribute("data-theme", root.getAttribute("data-theme")==="dark"?"light":"dark");
+    try{localStorage.setItem("theme",root.getAttribute("data-theme"))}catch(e){}
+    paint();
+  });
+})();
+(function(){
+  var shots=[].slice.call(document.querySelectorAll('.shot'));
+  var dlg=document.getElementById('lightbox');
+  if(!dlg || typeof dlg.showModal!=='function') return;
+  var img=document.getElementById('lb-img'), cap=document.getElementById('lb-cap'), cur=0;
+  function show(i){
+    cur=(i+shots.length)%shots.length;
+    var s=shots[cur].querySelector('img');
+    img.src=s.src; img.alt=s.alt;
+    cap.textContent=shots[cur].querySelector('figcaption b').textContent.replace(/\.$/,'');
+  }
+  shots.forEach(function(f,i){
+    f.querySelector('button').addEventListener('click',function(){show(i);dlg.showModal();});
+  });
+  document.getElementById('lb-prev').onclick=function(){show(cur-1)};
+  document.getElementById('lb-next').onclick=function(){show(cur+1)};
+  document.getElementById('lb-close').onclick=function(){dlg.close()};
+  dlg.addEventListener('click',function(e){ if(e.target===dlg) dlg.close(); });
+  dlg.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft') show(cur-1);
+    if(e.key==='ArrowRight') show(cur+1);
+  });
+})();
+</script>
+</body>
+</html>
