@@ -376,6 +376,37 @@ body.no-cursor #cur,body.no-cursor #cur-dot{display:none}
 .stmt i{font-style:normal;color:var(--muted);padding-right:.45em;
   font-size:clamp(1.9rem,5.6vw,4.4rem);line-height:1}
 
+/* ---------- certifications ---------- */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(262px,1fr));
+  gap:clamp(30px,4vw,52px) clamp(22px,3vw,42px)}
+.cert{display:flex;flex-direction:column;gap:7px}
+.cshot{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;border-radius:12px;
+  border:1px solid var(--line);background:var(--panel);margin-bottom:15px;
+  transition:border-color .55s var(--ease),box-shadow .7s var(--smooth),
+    transform .7s var(--smooth)}
+.cert:hover .cshot{border-color:var(--ink);transform:translateY(-5px);box-shadow:var(--sh)}
+.cshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;z-index:2;
+  background:#fff;transition:transform 1.2s var(--smooth)}
+.cert:hover .cshot img{transform:scale(1.03)}
+.cfall{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;text-align:center;padding:16px;z-index:1}
+.cfall b{font-size:12.5px;font-weight:600;letter-spacing:.22em;color:var(--ink);line-height:1.5}
+.cfall em{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:12px;color:var(--muted)}
+.cert .iss{font-size:11px;letter-spacing:.2em;color:var(--muted);transition:color .5s}
+.cert:hover .iss{color:var(--ink)}
+.cert h3{font-size:clamp(1rem,1.55vw,1.2rem);font-weight:600;line-height:1.32;
+  letter-spacing:-.018em}
+.cert .when{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:13.5px;
+  color:var(--muted);margin-top:-2px}
+.cert p{color:var(--muted);font-size:14.5px;line-height:1.6;max-width:44ch}
+.cert .verify{align-self:start;font-size:13px;color:var(--muted);margin-top:auto;
+  padding-top:10px;border-bottom:1px solid var(--line);padding-bottom:2px;
+  transition:color .5s,border-color .5s}
+.cert .verify:hover{color:var(--ink);border-color:var(--ink)}
+.certs-note{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:14.5px;
+  color:var(--muted);margin-top:clamp(34px,5vh,56px);border-top:1px solid var(--line);
+  padding-top:24px}
+
 /* ---------- stats ---------- */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:clamp(34px,5vh,56px);
   border-top:1px solid var(--line);padding-top:clamp(26px,4vh,42px)}
@@ -422,6 +453,9 @@ body.label #cur .lbl{opacity:1}
   .pill:hover{transform:translateY(-3px)}
   .hcol{padding-bottom:0}
 }
+@media (max-height:780px){
+  .rail-l a[href="#certifications"]{display:none}
+}
 @media (max-width:860px){
   .rail{display:none}
   .spinner{display:none}
@@ -467,7 +501,7 @@ body.label #cur .lbl{opacity:1}
 </div>
 
 <nav class="rail rail-l">
-  <a href="#work">WORK</a><a href="#experience">EXPERIENCE</a><a href="#contact">CONTACT</a>
+  <a href="#work">WORK</a><a href="#experience">EXPERIENCE</a><a href="#certifications">CERTIFICATIONS</a><a href="#contact">CONTACT</a>
 </nav>
 
 <nav class="rail rail-r">
@@ -644,9 +678,105 @@ body.label #cur .lbl{opacity:1}
     </div>
   </section>
 
+  <!-- CERTIFICATIONS -->
+  <section id="certifications" class="wrap">
+    <p class="slab fade">03 — CERTIFICATIONS</p>
+    <h2 class="center" data-split>Certifications</h2>
+    <div class="certs">
+      <article class="cert fade">
+        <a class="cshot" href="https://learn.nvidia.com/certificates?id=CIho7RxmRpys_Op2ofgNZA" target="_blank" rel="noopener" data-magnet aria-label="Building LLM Applications With Prompt Engineering certificate">
+          <span class="cfall"><b>NVIDIA</b><em>certificate</em></span>
+          <img src="certs/nvidia-llm-prompt-engineering.webp" alt="Building LLM Applications With Prompt Engineering certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">NVIDIA · DEEP LEARNING INSTITUTE</span>
+        <h3>Building LLM Applications With Prompt Engineering</h3>
+        <span class="when">August 2026</span>
+        <p>Designing, evaluating and iterating on prompts to build applications on top of large language models.</p>
+        <a class="verify" href="https://learn.nvidia.com/certificates?id=CIho7RxmRpys_Op2ofgNZA" target="_blank" rel="noopener" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="https://learn.nvidia.com/certificates?id=H6_AbOWjTciAAE8PGk2zPg" target="_blank" rel="noopener" data-magnet aria-label="Fundamentals of Deep Learning certificate">
+          <span class="cfall"><b>NVIDIA</b><em>certificate</em></span>
+          <img src="certs/nvidia-fundamentals-deep-learning.webp" alt="Fundamentals of Deep Learning certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">NVIDIA · DEEP LEARNING INSTITUTE</span>
+        <h3>Fundamentals of Deep Learning</h3>
+        <span class="when">December 2025</span>
+        <p>Training neural networks end to end on GPU hardware, from data preparation to evaluation.</p>
+        <a class="verify" href="https://learn.nvidia.com/certificates?id=H6_AbOWjTciAAE8PGk2zPg" target="_blank" rel="noopener" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="https://learn.nvidia.com/certificates?id=7insX7KZRx2j3DmnttCH-A" target="_blank" rel="noopener" data-magnet aria-label="Enhancing Data Science Outcomes With Efficient Workflow certificate">
+          <span class="cfall"><b>NVIDIA</b><em>certificate</em></span>
+          <img src="certs/nvidia-data-science-workflow.webp" alt="Enhancing Data Science Outcomes With Efficient Workflow certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">NVIDIA · DEEP LEARNING INSTITUTE</span>
+        <h3>Enhancing Data Science Outcomes With Efficient Workflow</h3>
+        <span class="when">August 2026</span>
+        <p>GPU-accelerated data pipelines — cutting the time between a question and an answer on large datasets.</p>
+        <a class="verify" href="https://learn.nvidia.com/certificates?id=7insX7KZRx2j3DmnttCH-A" target="_blank" rel="noopener" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="#" data-magnet aria-label="Azure Fundamentals (AZ-900) certificate">
+          <span class="cfall"><b>MICROSOFT AZURE</b><em>certificate</em></span>
+          <img src="certs/microsoft-azure-fundamentals.webp" alt="Azure Fundamentals (AZ-900) certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">MICROSOFT CERTIFIED</span>
+        <h3>Azure Fundamentals (AZ-900)</h3>
+        <p>Cloud concepts and the core Azure services, plus how they are priced, secured and governed.</p>
+        <a class="verify" href="#" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="#" data-magnet aria-label="OCI 2023 AI Certified Foundations Associate certificate">
+          <span class="cfall"><b>ORACLE</b><em>certificate</em></span>
+          <img src="certs/oracle-oci-ai-foundations.webp" alt="OCI 2023 AI Certified Foundations Associate certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">ORACLE UNIVERSITY</span>
+        <h3>OCI 2023 AI Certified Foundations Associate</h3>
+        <span class="when">December 2023</span>
+        <p>AI and machine learning services on Oracle Cloud Infrastructure, and where each one fits.</p>
+        <a class="verify" href="#" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="#" data-magnet aria-label="CCNA: Introduction to Networks certificate">
+          <span class="cfall"><b>CISCO</b><em>certificate</em></span>
+          <img src="certs/cisco-ccna-intro-networks.webp" alt="CCNA: Introduction to Networks certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">CISCO NETWORKING ACADEMY</span>
+        <h3>CCNA: Introduction to Networks</h3>
+        <span class="when">March 2026</span>
+        <p>Switching, routing, IPv4 and IPv6 addressing, the OSI model and troubleshooting a small network.</p>
+        <a class="verify" href="#" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="#" data-magnet aria-label="PCAP: Programming Essentials in Python certificate">
+          <span class="cfall"><b>CISCO · OPENEDG</b><em>certificate</em></span>
+          <img src="certs/cisco-pcap-python.webp" alt="PCAP: Programming Essentials in Python certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">CISCO NETWORKING ACADEMY · OPENEDG</span>
+        <h3>PCAP: Programming Essentials in Python</h3>
+        <span class="when">April 2024</span>
+        <p>Modules and packages, file and text processing, generators, iterators, closures and object-oriented Python.</p>
+        <a class="verify" href="#" data-magnet>Verify credential</a>
+      </article>
+      <article class="cert fade">
+        <a class="cshot" href="#" data-magnet aria-label="AI for Business Professionals certificate">
+          <span class="cfall"><b>HP LIFE</b><em>certificate</em></span>
+          <img src="certs/hp-ai-business.webp" alt="AI for Business Professionals certificate" loading="lazy" onerror="this.remove()">
+        </a>
+        <span class="iss">HP LIFE · HP FOUNDATION</span>
+        <h3>AI for Business Professionals</h3>
+        <span class="when">November 2025</span>
+        <p>Where AI tools fit in a business, how to prompt them effectively, and the ethics of using them at work.</p>
+        <a class="verify" href="#" data-magnet>Verify credential</a>
+      </article>
+    </div>
+    <p class="certs-note fade">A selection from 17+ certifications.</p>
+  </section>
+
   <!-- ABOUT -->
   <section id="about" class="wrap">
-    <p class="slab fade">03 — ABOUT</p>
+    <p class="slab fade">04 — ABOUT</p>
     <div class="about">
       <figure class="photo-wrap fade">
         <div class="par" data-parallax=".03">
@@ -672,7 +802,7 @@ body.label #cur .lbl{opacity:1}
 
   <!-- CONTACT -->
   <section id="contact" class="wrap">
-    <p class="slab fade">04 — CONTACT</p>
+    <p class="slab fade">05 — CONTACT</p>
     <div class="contact-grid">
       <div class="contact">
         <h2 data-split>Let's talk.</h2>
